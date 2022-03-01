@@ -1,0 +1,74 @@
+{
+    "appbarTitle": "Badia point of sale",
+
+    "welcomeMassage" :  "Welcome in the home page...",
+    "SelectlanguageText":"The language",
+    "EnglishLanguage": "English",
+    "ArabicLanguage": "Arabic",
+    "powered_by" : "Powered by ",
+    "arab_badia" : "Arab Badia",
+    "search": "Search",
+    "add_new_customer":"Add new customer",
+
+    "items": "Sections",
+    "brand": "Brands",
+    "log_out": "Log out",
+    "add_title":"Title...",
+    "save_new_task":"Save",
+    "branch": "Branch",
+    "vat_num": "VAT number",
+
+    "customer_data_text": "Customer data",
+    "customer_name": "Customer name",
+    "customer_phone": "Telephone number",
+    "customer_email": "E-mail",
+    "customer_address": "Address",
+    "customer_tax_number": "Tax number",
+    "payment_method": "Payment method", 
+    "print_invoice_text": "Print the invoice",
+    "customer_type" : "Customer type",
+    "first_type" : "First type",
+    "second_type" : "Second type",
+
+
+    "laptop_item": "Laptop",
+    "pc_item": "Pc",
+    "phone_item": "Phones",
+    "sandwiches_item": "Sandwiches",
+    "tablet_item": "Tablet",
+    "television_item": "Televisions",
+
+    "change_password": "change Password",
+
+    "cart": "Cart",
+    "PutInCart": "Put in the cart",
+    "add_to_cart": "Add to cart",
+    "buy_text": "Buy now",
+
+    "login": "LOGIN",
+    "signIn": "Sign in",
+    "username_textfield": "Email or username",
+    "password_textfield": "Password",
+
+    "bills_text": "All bills",
+    "receipt_text": "Receipt",
+
+
+    "search_field": "Look for ...",
+    "todo_list": "To do List",
+    
+    "today_visit_text": "Today's visits",
+    "add_new_text": "add new",
+
+    "old_password" : "old password",
+    "new_password" : "new password",
+    "confirm_new_password" : "Confirm the new password",
+
+    "cash_payment" : "Cash payment",
+
+    "add_succe": "added successfully",
+
+    "value_search": "Look for...",
+    "result": "Research results",
+    "There_is_no_product_with_this_name": "There is no product with this name"
+}

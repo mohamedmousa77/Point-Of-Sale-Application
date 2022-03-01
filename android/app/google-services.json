@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663342415162",
+    "project_id": "posapp-52d68",
+    "storage_bucket": "posapp-52d68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663342415162:android:4fd61d12a740b67d79e403",
+        "android_client_info": {
+          "package_name": "com.example.pos_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663342415162-oqeu07ingvs50ubvg6tf09cddp3i3ome.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOOJUa86lq9shut7QHOyg1bJ2yK_RsIIk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663342415162-oqeu07ingvs50ubvg6tf09cddp3i3ome.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

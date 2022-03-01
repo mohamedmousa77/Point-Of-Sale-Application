@@ -1,0 +1,78 @@
+{
+    "appbarTitle": "نقطة بيع بادية",
+    
+    "welcomeMassage" :  "مرحبا بكم في الصفحة الرئيسية ...",
+    "SelectlanguageText":"اختر لغتك",
+    "EnglishLanguage": "إنجليزي",
+    "ArabicLanguage": "عربي",
+    "powered_by" : "مطور من قبل",
+    "arab_badia" : "باديا العرب",
+
+    "items":"الأقسام",
+    "brand": "الماركة",
+    "vat_num" : "رقم تسجيل ضريبة القيمة المضافة",
+    "search": "بحث",
+    "add_new_customer": "إضافة عميل جديد",
+
+    "branch": "فرع",
+    "log_out": "تسجيل خروج",
+    "add_title":"...عنوان",
+    "save_new_task":"حفظ",
+
+    "customer_data_text": "بيانات العميل", 
+    "customer_name": "اسم العميل",
+    "customer_phone": "رقم الهاتف",
+    "customer_email": "البريد الإلكتروني",
+    "customer_address": "العنوان",
+    "customer_tax_number": "الرقم الضريبي",
+
+    "payment_method": "طريقة الدفع", 
+    "print_invoice_text": "طباعة الفاتورة",
+    "customer_type" : "نوع العميل",
+    "first_type" : "النوع الأول",
+    "second_type" : "النوع الثاني",
+
+
+
+    "laptop_item": "حاسوب محمول",
+    "pc_item": "الكمبيوتر",
+    "phone_item": "الهواتف",
+    "sandwiches_item": "سندويشات",
+    "tablet_item": "تابلت",
+    "television_item": "التلفزيونات",
+
+    "change_password": "تغيير كلمة المرور",
+
+    "cart": "العربة",
+    "buy_text": "اشتري الآن",
+    "PutInCart": "اضف الي العربة",
+    "add_to_cart":  "اضف الي العربة",
+
+    "login": "تسجيل الدخول",
+    "signIn": "تسجيل الدخول",
+    "username_textfield": "البريد الإلكتروني أو اسم المستخدم",
+    "password_textfield": " كلمة المرور",
+
+    "bills_text": "جميع الفواتير",
+    "receipt_text": "الإيصال",
+
+    "search_field": "...بحث",
+    "todo_list": "قائمة العمل",
+
+    "today_visit_text": "زيارات اليوم",
+    "add_new_text": "اضف جديد",
+
+    "old_password" : "كلمة سر قديمة",
+    "new_password" : "كلمة مرور جديدة",
+    "confirm_new_password" : "قم بتأكيد كلمة المرور الجديدة",
+
+    "cash_payment" : "دفع كاش",
+
+    "add_succe": "اضيف بنجاح",
+
+
+    "value_search": "...ابحث عن",
+    "result": "نتائج البحث",
+    "There_is_no_product_with_this_name" : "لا يوجد منتج بهذا الاسم"
+
+}
