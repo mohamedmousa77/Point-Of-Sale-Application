@@ -11,6 +11,7 @@ import '../widget/custom_navigator_bar.dart';
 import '../widget/language_card.dart';
 
 import '../services/user_login_service.dart';
+import 'add_product.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
@@ -42,6 +43,7 @@ class _SettingState extends State<Setting> {
                       margin: const EdgeInsets.only(top: 20),
                       child: changePasswordCard(context)),
                   _buildCustomCard(context: context),
+
                   _buildLogOutCard(context: context),
                 ],
               ),
@@ -58,7 +60,7 @@ class _SettingState extends State<Setting> {
   }) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => const BranchesScreen());
+        Get.to(() => const AddProduct());
       },
       child: Container(
         width: MediaQuery.of(context).size.width * 0.92,
@@ -74,9 +76,10 @@ class _SettingState extends State<Setting> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    AppLocalizations.of(context)!
-                        .getTranslatedValue("branch")
-                        .toString(),
+                    // AppLocalizations.of(context)!
+                    //     .getTranslatedValue("branch")
+                    //     .toString(),
+                    'Add Product',
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,

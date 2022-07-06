@@ -110,7 +110,7 @@ Widget detailCart(BuildContext context, String nameProduct, String urlImage,
   );
 }
 
-Widget totalamountOfPruducts(BuildContext context, double totalPrice) {
+Widget totalAmountOFProducts(BuildContext context, double totalPrice) {
   return Container(
     padding: const EdgeInsets.only(left: 25, right: 25),
     margin: const EdgeInsets.only(top: 25),
@@ -122,7 +122,7 @@ Widget totalamountOfPruducts(BuildContext context, double totalPrice) {
             AppLocalizations.of(context)!
                     .getTranslatedValue('buy_text')
                     .toString() +
-                '${totalPrice}',
+                ' ${totalPrice} \$ ' ,
             style: getcustomertextStyle(
                 context, 20, FontWeight.w400, Colors.white)),
         color: const Color.fromRGBO(210, 140, 84, 1),

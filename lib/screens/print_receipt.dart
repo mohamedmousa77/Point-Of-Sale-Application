@@ -39,7 +39,9 @@ class Printer {
   double totalNet = 1;
   double disc = 1;
 
-  void _receipt(NetworkPrinter printer, CompanyInfo companyData) {
+  void _receipt(NetworkPrinter printer,
+      // CompanyInfo companyData
+      ) {
     double netValue = Get.find<CarController>().totalAmount.value * totalNet + Get.find<CarController>().totalAmount.value;
     if (transactionId.length < 7) {
       String temp = "";
@@ -49,10 +51,10 @@ class Printer {
       transactionId = temp + transactionId;
     }
 
-    String _companyName = companyData.name;
-    String _companyAddress = companyData.address;
-    String _phoneNumber = companyData.phoneNumber;
-    String _VATNo = companyData.taxNumber;
+    String _companyName =' companyData.name';
+    String _companyAddress = 'companyData.address';
+    String _phoneNumber = 'companyData.phoneNumber';
+    String _VATNo = 'companyData.taxNumber';
 
     printer.text(_companyName, styles: const PosStyles(align: PosAlign.center));
     printer.text(_companyAddress, styles: const PosStyles(align: PosAlign.center));
@@ -73,7 +75,7 @@ class Printer {
         ]
     );
     printer.emptyLines(1);
-    printer.text(transactionId +
+    printer.text('transactionId' +
         "    " +
         "01" +
         "    " +
@@ -82,7 +84,7 @@ class Printer {
         DateTime.now().toString());
     printer.row([
       PosColumn(
-          text: transactionId, styles: const PosStyles(align: PosAlign.center)),
+          text: 'transactionId', styles: const PosStyles(align: PosAlign.center)),
       PosColumn(text: "01", styles: const PosStyles(align: PosAlign.center)),
       PosColumn(text: "cash", styles: const PosStyles(align: PosAlign.center)),
       PosColumn(
@@ -169,18 +171,20 @@ class Printer {
 
   Future<void> _printReceipt(BuildContext context) async {
     print('in print receipt');
-    CompanyInfo companyData = await CompanyDataService().getCompanyData();
+    // CompanyInfo companyData = await CompanyDataService().getCompanyData();
     const PaperSize paper = PaperSize.mm58;
     final profile = await CapabilityProfile.load();
     final printer = NetworkPrinter(paper, profile);
     try{
       final PosPrintResult res =
       await printer.connect((Ipify.ipv4()).toString(), port: 9100);
-      print(printer.port);
+      debugPrint(printer.port.toString());
       if (res == PosPrintResult.success) {
         print('success');
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Success")));
-        _receipt(printer, companyData);
+        _receipt(printer,
+          // companyData
+        );
         printer.disconnect();
       } if (res==PosPrintResult.scanInProgress){
         print('Scan in progress');

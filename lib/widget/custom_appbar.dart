@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:pos_application/controllers/car_controller.dart';
 
 import '../classes/app_localizations.dart';
 import '../classes/localization_const.dart';
@@ -11,16 +12,16 @@ import '../services/product_service.dart';
 import '../widget/change_language_style.dart';
 
 Widget customAppBar(BuildContext context, {int? key}) {
-  Future addProductToCar(String productName, String price, String image) async {
-    final carproduct = Car(
-      id: 2,
-      title: productName,
-      count: 1,
-      price: double.parse(price.toString()),
-      ImageUrl: image,
-    );
-    await NotesDataBase.instance.createCar(carproduct);
-  }
+  // Future addProductToCar(String productName, String price, String image) async {
+  //   final carproduct = Car(
+  //     id: '2',
+  //     title: productName,
+  //     count: 1,
+  //     price: double.parse(price.toString()),
+  //     imageUrl: image,
+  //   );
+  //   await NotesDataBase.instance.createCar(carproduct);
+  // }
 
   void _showToast() {
     Fluttertoast.showToast(
@@ -72,8 +73,8 @@ Widget customAppBar(BuildContext context, {int? key}) {
                               const Color.fromRGBO(34, 53, 53, 1)))),
                   GestureDetector(
                     onTap: () {
-                      addProductToCar(snapshot.data![0].name, Get.arguments[1],
-                          snapshot.data![0].image);
+                      // Get.find<CarController>().addProductToCar(snapshot.data![0].name, Get.arguments[1],
+                      //     snapshot.data![0].image);
                       _showToast();
                     },
                     child: Container(
@@ -89,14 +90,11 @@ Widget customAppBar(BuildContext context, {int? key}) {
                 ],
               ),
             ));
-  } else if (key == 2) {
+  }
+  else if (key == 2) {
     return Column(
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(248, 248, 248, 1),
-          ),
-        ),
+
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 0.1,
@@ -110,8 +108,29 @@ Widget customAppBar(BuildContext context, {int? key}) {
               ? Row(
                   children: [
                     Container(
-                        padding: const EdgeInsets.only(
-                            top: 30, left: 20, bottom: 15),
+                      padding:
+                       EdgeInsets.only(
+                          // top: 30,
+                          // left: 90,
+                          // bottom: 15
+                          // top: MediaQuery.of(context).size.height*0.1,
+                          left:  MediaQuery.of(context).size.width*0.05,
+                          // bottom:  MediaQuery.of(context).size.height*0.1
+                      ),
+                      child: SizedBox(
+                        child: IconButton(
+                          icon: const Icon(Icons.keyboard_backspace,
+                              color: Color.fromRGBO(34, 53, 53, 1)),
+                          onPressed: () => Navigator.pop(context),
+                        ),
+                      ),
+                    ),
+                    Container(
+                        padding:  EdgeInsets.only(
+                            // top: MediaQuery.of(context).size.height*0.1,
+                            left:  MediaQuery.of(context).size.width*0.16,
+                            // bottom:  MediaQuery.of(context).size.height*0.1
+                        ),
                         child: Text(
                             AppLocalizations.of(context)!
                                 .getTranslatedValue('appbarTitle')
@@ -121,17 +140,7 @@ Widget customAppBar(BuildContext context, {int? key}) {
                                 20,
                                 FontWeight.bold,
                                 const Color.fromRGBO(34, 53, 53, 1)))),
-                    Container(
-                      padding:
-                          const EdgeInsets.only(top: 30, left: 90, bottom: 15),
-                      child: SizedBox(
-                        child: IconButton(
-                          icon: const Icon(Icons.keyboard_backspace,
-                              color: Color.fromRGBO(34, 53, 53, 1)),
-                          onPressed: () => Navigator.pop(context),
-                        ),
-                      ),
-                    ),
+
                   ],
                 )
               : Row(
@@ -164,13 +173,9 @@ Widget customAppBar(BuildContext context, {int? key}) {
         ),
       ],
     );
-  } else {
+  }
+  else {
     return Column(children: [
-      Container(
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(248, 248, 248, 1),
-        ),
-      ),
       Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 0.15,
@@ -183,7 +188,10 @@ Widget customAppBar(BuildContext context, {int? key}) {
           child: Container(
               padding: EdgeInsets.only(
                   top: 60,
-                  left: LanguageEnglish(context) == 'English' ? 100 : 120),
+                  left: LanguageEnglish(context) == 'English' ?
+                  // 100
+                   MediaQuery.of(context).size.width*0.3
+                      : 120),
               child: Text(
                   AppLocalizations.of(context)!
                       .getTranslatedValue('appbarTitle')

@@ -63,8 +63,8 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
                         color:const Color.fromRGBO(34, 53, 53, 1),
                         // onPressed: () => Get.to(ShoppingCar()),
                         onPressed: (){
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>ShoppingCar()));
-
+                          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>ShoppingCar()));
+                          Get.off(ShoppingCar());
                         },
                         child: SvgPicture.asset(('images/car.svg'),
                             color: ColorTheme.iconNotSelected)),

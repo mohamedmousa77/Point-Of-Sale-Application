@@ -1,5 +1,5 @@
 class Product {
-  int id;
+  String id;
   String name;
   String productDescription;
   String barcodeType;
@@ -25,4 +25,5 @@ class Product {
         alertQuantity: json["alert_quantity"] ?? "Null",
         image: json["image"],
       );
+
 }

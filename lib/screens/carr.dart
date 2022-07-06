@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +20,41 @@ class ShoppingCar extends StatefulWidget {
 }
 
 class _ShoppingCarState extends State<ShoppingCar> {
+  // int count = Get.find<CarController>().carProductsList[2].count ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    Get.find<CarController>().fetchAllCarProducts();
+    Get.find<CarController>().theResultOfTheSumOfTheTotalPrice();
+    Get.find<CarController>().addListener(() {setState(() { });});
+    debugPrint('hasListeners.........?> '+Get.find<CarController>().hasListeners .toString());
+
+
+    super.initState();
+  }
+
+
+  @override
+  void setState(VoidCallback fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
+  // int count = 1;
+  // void updateCount(String id ){
+  //   for(var product in Get.find<CarController>().carProductsList){
+  //     count.addAll({product.id : product.count});
+  //     debugPrint('count list length ' + count.length.toString());
+  //     debugPrint('id count list ' +count.values.toString());
+  //
+  //   }
+  //  setState(() {
+  //
+  //  });
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +73,7 @@ class _ShoppingCarState extends State<ShoppingCar> {
                       bottomLeft: Radius.circular(40),
                       bottomRight: Radius.circular(40),
                     )),
-                child: carproducts == null
+                child:  Get.find<CarController>().carProductsList.isEmpty
                     ? const Center(child: Text('No Products'))
                     : SingleChildScrollView(
                         child: Column(
@@ -45,7 +81,7 @@ class _ShoppingCarState extends State<ShoppingCar> {
                             Center(
                               child: Container(
                                 padding: const EdgeInsets.only(
-                                    left: 160, bottom: 15, top: 15),
+                                    left: 180, bottom: 15, top: 15),
                                 width: MediaQuery.of(context).size.width,
                                 decoration: const BoxDecoration(
                                     color: Colors.white,
@@ -64,14 +100,12 @@ class _ShoppingCarState extends State<ShoppingCar> {
                                         const Color.fromRGBO(34, 53, 53, 1))),
                               ),
                             ),
-                            buildCart_2(context),
+                            buildCart(context),
                             Get.find<CarController>().totalAmount.value == 0
                                 ? Container()
-                                : totalamountOfPruducts(
+                                : totalAmountOFProducts(
                                     context,
-                                    Get.find<CarController>()
-                                        .totalAmount
-                                        .value),
+                                    Get.find<CarController>().totalAmount.value),
                             SizedBox(height: MediaQuery.of(context).size.height * 0.02,
                             )
                           ],
@@ -81,31 +115,13 @@ class _ShoppingCarState extends State<ShoppingCar> {
         ),
       ),
       bottomNavigationBar: CustomNavigationBar(2),
+    // backgroundColor: Colors.,
     );
   }
 
-  void theResultOfTheSumOfTheTotalPrice() {
-    var result = 0.0;
-    List<double> priceSum = [];
-    List<int> countSum = [];
-    if (carproducts.isEmpty) {
-      Get.find<CarController>().totalAmount.value = result;
-    } else {
-      for (int count = 0; count < carproducts.length; count++) {
-        priceSum.add(carproducts[count].price);
-        countSum.add(carproducts[count].count);
-      }
-      for (int count = 0; count < carproducts.length; count++) {
-        result = (result + (priceSum[count] * countSum[count]));
-      }
-      Get.find<CarController>().totalAmount.value = result;
-    }
-    setState(() {});
-  }
-
-  buildCart_2(BuildContext context) {
+  buildCart(BuildContext context) {
     return Column(
-      children: carproducts.map((element) {
+      children: Get.find<CarController>().carProductsList.map((element) {
         return Container(
             height: MediaQuery.of(context).size.height * 0.16,
             width: MediaQuery.of(context).size.width * 0.9,
@@ -116,16 +132,20 @@ class _ShoppingCarState extends State<ShoppingCar> {
             ),
             child: Row(
               children: [
+                // image
                 Container(
                   height: MediaQuery.of(context).size.height * 0.35,
                   width: MediaQuery.of(context).size.width * 0.35,
+                  margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(26),
-                      color: const Color.fromRGBO(34, 53, 53, 1)),
+                      // color: const Color.fromRGBO(34, 53, 53, 1)
+                  color: Colors.white
+                  ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Image.network(
-                        element.ImageUrl,
+                        element.imageUrl,
                         fit: BoxFit.cover,
                         errorBuilder: (_, __, ___) {
                           return LanguageEnglish(context) == 'English'
@@ -134,6 +154,7 @@ class _ShoppingCarState extends State<ShoppingCar> {
                         },
                       )),
                 ),
+                // title & price
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -158,6 +179,7 @@ class _ShoppingCarState extends State<ShoppingCar> {
                     ),
                   ],
                 ),
+                // Increment & Count & DisIncremet
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -174,14 +196,21 @@ class _ShoppingCarState extends State<ShoppingCar> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6)),
                           onPressed: () async {
-                            await updateProductToCar(element.id!, true);
-                          },
+                            await  Get.find<CarController>().updateProductToCar(element.id, true);
+                            // setState(() {
+                            //
+                            //   count = element.count +1 ;
+                            //   isChanging = true;
+                            // });
+
+                            },
                         ),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.only(top: 7, left: 10),
-                      child: Text('${element.count}',
+                      child: Text(
+                           '${element.count}',
                           style: getcustomertextStyle(
                               context,
                               16,
@@ -204,8 +233,13 @@ class _ShoppingCarState extends State<ShoppingCar> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6)),
                           onPressed: () async {
-                            await updateProductToCar(element.id!, false);
-                          },
+                            await  Get.find<CarController>().updateProductToCar(element.id, false);
+                            // setState(() {
+                            //  element.count == 1 ?  count = element.count -1 : NotesDataBase.instance.deleteCar(element.id) ;
+                            //   isChanging = true;
+                            // });
+
+                            },
                         ),
                       ),
                     ),
@@ -217,34 +251,7 @@ class _ShoppingCarState extends State<ShoppingCar> {
     );
   }
 
-  @override
-  void didChangeDependencies() {
-    refreshCar();
-    super.didChangeDependencies();
-    theResultOfTheSumOfTheTotalPrice();
-  }
 
-  List<Car> carproducts = [];
 
-  Future refreshCar() async {
-    carproducts = await NotesDataBase.instance.readAllCarProducts();
-    theResultOfTheSumOfTheTotalPrice();
-    setState(() {});
-  }
 
-  // await updateProductToCar(element.id! , true);
-  Future updateProductToCar(int ID, bool isAdd) async {
-    Car carProduct = carproducts.firstWhere((element) => ID == element.id);
-
-    carProduct = carProduct.copyCar(
-      count: isAdd
-          ? carProduct.count + 1
-          : carProduct.count == 1
-              ? await NotesDataBase.instance.deleteCar(carProduct.id!)
-              : carProduct.count - 1,
-    );
-
-    await NotesDataBase.instance.updateCar(carProduct);
-    refreshCar();
-  }
 }

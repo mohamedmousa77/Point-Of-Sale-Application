@@ -116,47 +116,47 @@ class Note {
 // Car List
 class CarProductField {
   static final List<String> values = [
-    // Add All Fieldes
-    id, title, price, count, ImageUrl
+    // Add All Fields
+    id, title, price, count, imageUrl
   ];
 
-  static final String id = '_id';
-  static final String title = 'title';
-  static final String count = 'count';
-  static final String price = 'price';
-  static final String ImageUrl = 'ImageUrl';
+  static  String id = '_id';
+  static  String title = 'title';
+  static  String count = 'count';
+  static  String price = 'price';
+  static  String imageUrl = 'ImageUrl';
 }
 
 class Car {
-  final int? id;
+  final String id;
   final String title;
   final double price;
   final int count;
-  final String ImageUrl;
+  final String imageUrl;
   final String line_discount_type = "fixed";
 
   Car({
-    this.id,
+    required this.id,
     required this.title,
     required this.count,
     required this.price,
-    required this.ImageUrl,
+    required this.imageUrl,
   });
 
   static Car fromJsonCar(Map<String, dynamic> json) => Car(
-        id: json[CarProductField.id] as int?,
-        title: json[CarProductField.title] as String,
-        count: int.parse(json[CarProductField.count].toString()),
-        price: double.parse(json[CarProductField.price] as String),
-        ImageUrl: json[CarProductField.ImageUrl] as String,
+        id: json[CarProductField.id].toString(),
+        title: json[CarProductField.title],
+        count: int.parse(json[CarProductField.count]),
+        price: double.parse(json[CarProductField.price]),
+        imageUrl: json[CarProductField.imageUrl],
       );
 
-  Map<String, dynamic?> toJsonCar() => {
+  Map<String, dynamic> toJsonCar() => {
         CarProductField.id: id,
         CarProductField.title: title,
-        CarProductField.price: price,
-        CarProductField.count: count,
-        CarProductField.ImageUrl: ImageUrl
+        CarProductField.price: price.toString(),
+        CarProductField.count: count.toString(),
+        CarProductField.imageUrl: imageUrl
       };
 
   Map<String, dynamic> toTransactionMap() {
@@ -175,15 +175,15 @@ class Car {
   }
 
   Car copyCar(
-          {int? id,
+          {String? id,
           String? title,
           int? count,
           double? price,
-          String? ImageUrl}) =>
+          String? imageUrl}) =>
       Car(
           id: id ?? this.id,
-          title: title ?? this.title,
+          title:  this.title,
           price: price ?? this.price,
           count: count ?? this.count,
-          ImageUrl: ImageUrl ?? this.ImageUrl);
+          imageUrl: imageUrl ?? this.imageUrl);
 }

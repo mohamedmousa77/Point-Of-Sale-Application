@@ -4,6 +4,7 @@ import '../services/product_service.dart';
 
 class ProductController extends GetxController {
   //this method will fetch all the product from the api
+  List<Product> productsList = [];
   Future<List<Product>> search({
     int? categoryId,
     int? brandId,
@@ -19,5 +20,10 @@ class ProductController extends GetxController {
     );
 
     return myProduct;
+  }
+
+  Future<List<Product>> addProduct ()async{
+
+    return productsList;
   }
 }

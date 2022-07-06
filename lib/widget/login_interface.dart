@@ -383,13 +383,14 @@ class _loginInterfaceState extends State<loginInterface> {
                           borderRadius: BorderRadius.circular(16),
                         ),
                         onPressed: () async {
-                          bool validation =
-                              await UserLoginApi().logIn(username, password);
-                          if (validation) {
-                            Get.off(const MyHomePage());
-                          } else {
-                            _showToast();
-                          }
+                          Get.off(const MyHomePage());
+                          // bool validation =
+                          //     await UserLoginApi().logIn(username, password);
+                          // if (validation) {
+                          //   Get.off(const MyHomePage());
+                          // } else {
+                          //   _showToast();
+                          // }
                         },
                       ),
                     ),

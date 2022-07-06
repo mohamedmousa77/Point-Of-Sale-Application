@@ -1,62 +1,67 @@
 // import '../models/note.dart';
+import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 import 'note.dart';
 
 class NotesDataBase {
-  static final NotesDataBase instance = NotesDataBase._init();
+  static final NotesDataBase instance = NotesDataBase.init();
   static Database? _database;
-  NotesDataBase._init();
+  NotesDataBase.init();
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDB('notes.db'); //notesDB where db is stored
+    _database = await initDB('notes.db'); //notesDB where db is stored
     return _database!;
   }
 
-  Future<Database> _initDB(String filePath) async {
+  Future<Database> initDB(String filePath) async {
     final dbPath = await getDatabasesPath();
     // final path = join(dbPath, filePath);
     final String path = dbPath + '/' + filePath;
-    return await openDatabase(path, version: 1, onCreate: _createDB);
+    return await openDatabase(path, version: 1, onCreate: createDB);
   }
 
   // For Create Table
-  Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY';
-    final TextType = 'TEXT';
+  Future createDB(Database db, int version) async {
+    debugPrint('create DB called!!! ');
+    String idType = 'INTEGER PRIMARY KEY';
+    String textType = 'TEXT';
+    // Create table for note
     await db.execute('''
       CREATE TABLE $tableNotes(
       ${NotesField.id} $idType,
-      ${NotesField.title} $TextType,
-      ${NotesField.date} $TextType
+      ${NotesField.title} $textType,
+      ${NotesField.date} $textType
       );
       ''');
-    await db.execute('''
-      CREATE TABLE $tableTodayvists(
-      ${VisitFields.id} $idType,
-      ${VisitFields.title} $TextType
-      );
-        ''');
-    await db.execute('''
-      CREATE TABLE $tableTodayVists(
-      ${TodayVisitFields.id} $idType,
-      ${TodayVisitFields.title} $TextType,
-      ${TodayVisitFields.today_id} $TextType,
-      FOREIGN KEY (${TodayVisitFields.today_id}) REFERENCES $tableNotes (${NotesField.id})
-     
-      );
-        ''');
-    //      CAR
+    // Create table for
+    // await db.execute('''
+    //   CREATE TABLE $tableTodayvists(
+    //   ${VisitFields.id} $idType,
+    //   ${VisitFields.title} $TextType
+    //   );
+    //     ''');
+    // await db.execute('''
+    //   CREATE TABLE $tableTodayVists(
+    //   ${TodayVisitFields.id} $idType,
+    //   ${TodayVisitFields.title} $TextType,
+    //   ${TodayVisitFields.today_id} $TextType,
+    //   FOREIGN KEY (${TodayVisitFields.today_id}) REFERENCES $tableNotes (${NotesField.id})
+    //
+    //   );
+    //     ''');
+    /* create table for CAR */
     await db.execute('''
       CREATE TABLE $tableCarProducts(
       ${CarProductField.id} $idType,
-      ${CarProductField.title} $TextType,
-      ${CarProductField.count} $TextType,
-      ${CarProductField.price} $TextType,
-      ${CarProductField.ImageUrl} $TextType
+      ${CarProductField.title} $textType,
+      ${CarProductField.count} $textType,
+      ${CarProductField.price} $textType,
+      ${CarProductField.imageUrl} $textType
       );
         ''');
+    debugPrint('car table created !!! ');
   }
 
   ////////////////// Visit //////////////////////
@@ -102,16 +107,20 @@ class NotesDataBase {
   ////////////////// Cart //////////////////////
   // Insert in Car table
   Future<Car> createCar(Car car) async {
+    debugPrint('createCar called !!!!! ');
+    debugPrint(car.id);
     final db = await instance.database;
     final id = await db.insert(tableCarProducts,
         // note.toJson()
         {
           CarProductField.title: car.title,
-          CarProductField.price: car.price,
-          CarProductField.count: car.count,
-          CarProductField.ImageUrl: car.ImageUrl
+          CarProductField.price:car.price.toString(),
+          CarProductField.count:car.count.toString(),
+          CarProductField.imageUrl: car.imageUrl
         });
-    return car.copyCar(id: id);
+    debugPrint('id ....... '+id.toString());
+    debugPrint('values insert in ' + tableCarProducts);
+    return car.copyCar(id: car.id);
   }
 
   // Update Cat
@@ -120,13 +129,14 @@ class NotesDataBase {
     db.update(
       tableCarProducts,
       car.toJsonCar(),
-      where: '${CarProductField.id}= ?',
+       where: '${CarProductField.id}= ?',
       whereArgs: [car.id],
     );
     return 4;
   }
 
   Future<bool> clearCar() async {
+    debugPrint('clearCar called  !! ');
     final db = await instance.database;
     db.delete(
       tableCarProducts,
@@ -135,7 +145,7 @@ class NotesDataBase {
   }
 
   // Delete Car
-  Future<int> deleteCar(int id) async {
+  Future<int> deleteCar(String id) async {
     final db = await instance.database;
     return db.delete(tableCarProducts,
         where: '${CarProductField.id}= ?', whereArgs: [id]);
@@ -144,10 +154,17 @@ class NotesDataBase {
   /////////////////// Visits /////////////////////////
   // Read From Car Table
   Future<List<Car>> readAllCarProducts() async {
+    debugPrint('readAllCarProducts called !!!!!!');
     final db = await instance.database;
     // final orderby = '${NotesField.date} ASC';
-    final result = await db.query(tableCarProducts);
-    return result.map((json) => Car.fromJsonCar(json)).toList();
+    final  result = await db.query(tableCarProducts);
+    debugPrint('result > ');
+    debugPrint(result.toString());
+    return result.map((json) {
+      debugPrint('json >   ');
+      debugPrint(json.toString());
+      return Car.fromJsonCar(json);
+    }).toList();
   }
 
   // Insert Into Visits Table

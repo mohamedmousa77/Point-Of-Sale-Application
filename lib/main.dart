@@ -3,6 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pos_application/controllers/firebase_product_controller.dart';
+import 'package:pos_application/controllers/recipt_controller.dart';
 import '../classes/localization_const.dart';
 import '../controllers/user_controller.dart';
 import '../screens/carr.dart';
@@ -17,18 +19,25 @@ import '../screens/splashscreen2.dart';
 import '../screens/to_do_list.dart';
 import 'classes/app_localizations.dart';
 import 'controllers/busniss_controller.dart';
-import 'controllers/car_controller.dart';
+import 'controllers/car_controller.dart';   
 import 'controllers/category_brand_controller.dart';
+import 'database/notes_database.dart';
 import 'screens/print_receipt.dart';
 
 void main() async {
   Get.put<CarController>(CarController());
   Get.put<UserController>(UserController());
-WidgetsFlutterBinding.ensureInitialized();
+  Get.put<FirebaseProductController>(FirebaseProductController());
+  Get.put<CarController>(CarController());
+  Get.put<InvoiceController>(InvoiceController());
+  // NotesDataBase;
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  QuerySnapshot<Map<String, dynamic>>data=await FirebaseFirestore.instance.collection('active').get();
-  bool active = data.docs.first.data()['true'];
-  runApp(active ? MyApp() :const MaterialApp());
+  // QuerySnapshot<Map<String, dynamic>>data=await
+  // FirebaseFirestore.instance.collection('active').get();
+  // bool active = data.docs.first.data()['true'];
+  // runApp(active ? MyApp() :const MaterialApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -60,7 +69,7 @@ class _MyAppState extends State<MyApp> {
 
     //the inizialization of the category controller
     Get.put<CategoryController>(CategoryController());
-
+    
     Get.put<BusnissController>(BusnissController());
     super.didChangeDependencies();
   }
@@ -102,18 +111,18 @@ class _MyAppState extends State<MyApp> {
         return supportedLocales.first;
       },
 
-      routes: {
-        '/authPage': (context) => AuthPage(),
-        '/carPage': (context) => ShoppingCar(),
-        '/details': (context) => const DetailsScreen(),
-        '/receipt': (context) => const Receipt(),
-        '/sections': (context) => const Section(),
-        '/setting': (context) => Setting(),
-        '/receiptDetails': (context) => const ReceiptDetails(),
-        '/splachscreen': (context) => Screen(),
-        '/clientdetails': (context) => const ClientDetails(),
-        '/todolist': (context) => ToDoList(),
-      },
+      // routes: {
+      //   '/authPage': (context) => AuthPage(),
+      //   '/carPage': (context) => ShoppingCar(),
+      //   // '/details': (context) => const DetailsScreen(),
+      //   // '/receipt': (context) => const Receipt(),
+      //   '/sections': (context) =>  Section(),
+      //   '/setting': (context) => Setting(),
+      //   '/receiptDetails': (context) => const ReceiptDetails(),
+      //   '/splachscreen': (context) => Screen(),
+      //   '/clientdetails': (context) => const ClientDetails(),
+      //   '/todolist': (context) => ToDoList(),
+      // },
       //splash screen
     );
   }

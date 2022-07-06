@@ -54,11 +54,12 @@ class _BarCodeResultState extends State<BarCodeResult> {
                 crossAxisCount: 2,
               ),
               itemCount: listResult.length,
-              itemBuilder: (BuildContext context, index) => buildSectionCard(
-                listResult[index].name,
-                listResult[index].image,
-                listResult[index].id,
-              ),
+              itemBuilder: (__,_)=>Container(),
+              // itemBuilder: (BuildContext context, index) => buildSectionCard(
+              //   listResult[index].name,
+              //   listResult[index].image,
+              //   listResult[index].id,
+              // ),
             ),
           )
         ],

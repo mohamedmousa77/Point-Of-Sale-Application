@@ -1,5 +1,5 @@
 {
-    "appbarTitle": "نقطة بيع بادية",
+    "appbarTitle": "نقطة بيع",
     
     "welcomeMassage" :  "مرحبا بكم في الصفحة الرئيسية ...",
     "SelectlanguageText":"اختر لغتك",
@@ -27,7 +27,7 @@
     "customer_tax_number": "الرقم الضريبي",
 
     "payment_method": "طريقة الدفع", 
-    "print_invoice_text": "طباعة الفاتورة",
+    "print_invoice_text": "تحميل فاتورة",
     "customer_type" : "نوع العميل",
     "first_type" : "النوع الأول",
     "second_type" : "النوع الثاني",

@@ -1,5 +1,5 @@
 {
-    "appbarTitle": "Badia point of sale",
+    "appbarTitle": "Point of sale",
 
     "welcomeMassage" :  "Welcome in the home page...",
     "SelectlanguageText":"The language",
@@ -25,7 +25,7 @@
     "customer_address": "Address",
     "customer_tax_number": "Tax number",
     "payment_method": "Payment method", 
-    "print_invoice_text": "Print the invoice",
+    "print_invoice_text": "Download Invoice",
     "customer_type" : "Customer type",
     "first_type" : "First type",
     "second_type" : "Second type",

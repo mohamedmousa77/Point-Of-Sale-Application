@@ -15,9 +15,18 @@ class CategoryController extends GetxController {
   int? selectedValueSection;
 
   //this list will contain all the category
-  List<Category> categoryList = [];
+  List<Category> categoryList = [
+    Category(id: 1, name: 'phone'),
+    Category(id: 2, name: 'pc'),
+    Category(id: 3, name: 'sandewish')
+  ];
+
   //this list will contain all the brands
-  List<Brand> brandList = [];
+  List<Brand> brandList = [
+    Brand(id: 1, name: 'apple'),
+    Brand(id: 2, name: 'samsong'),
+    Brand(id: 3, name: 'oppo')
+  ];
 
   // the result of the search
   Map<String, dynamic> result = {};

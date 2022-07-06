@@ -72,7 +72,7 @@ class ProductApi {
   }
 
   //this method will return the price of a product
-  Future<String> getPriceOfTheProduct(int id) async {
+  Future<String> getPriceOfTheProduct(String id) async {
     //the url of the price
     final _priceUrl = LinksUrl().productPriceUrl + "$id";
 
