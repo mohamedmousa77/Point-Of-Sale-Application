@@ -1,16 +1,50 @@
-# pos_application
+### 📱 Point Of Sale Application
 
-A new Flutter project.
+A modern, cross-platform Point of Sale (POS) mobile application built with Flutter and powered by REST APIs, designed to streamline product management, customer handling, and sales operations for small to medium-sized businesses.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+![image](https://github.com/user-attachments/assets/8a73d05a-cba5-4045-abc7-dcd8fad20cf6)
 
-A few resources to get you started if this is your first Flutter project:
+---
+### 🚀 Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+🛒 Cart Management: Add, update, or remove items easily.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+📦 Product Categorization: Seamless browsing by smartphones, laptops, etc.
+
+🔍 Search Functionality: Instantly find products in the database.
+
+👤 Customer Data Entry: Capture and store customer details before checkout.
+
+🧾 Receipt Generation: Automatically generates a downloadable receipt.
+
+🌐 Cross-Platform: Available on both iOS and Android using Flutter.
+
+⚙️ REST API Integration: Communicates with back-end services for real-time updates.
+
+---
+### 🛠️ Built With
+
+Flutter – UI toolkit for building natively compiled apps.
+
+Dart – Programming language for Flutter.
+
+REST API – Backend communication and data management.
+
+---
+### 📁 Folder Structure
+
+<pre> ```
+lib/
+├── screens/           # UI Screens for different views
+├── models/            # Data models
+├── services/          # API services and logic
+├── widgets/           # Reusable components
+└── main.dart          # Entry point
+ ``` </pre>
+
+---
+### 🙋‍♂️ Author
+
+Mohamed Mousa:
+🔗 Portfolio: http://mohamedmousa.it
